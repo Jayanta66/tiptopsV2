@@ -10,5 +10,6 @@ public class TiptopController {
 	public String home() {
 		return "index";
 	}
+	
 
 }
