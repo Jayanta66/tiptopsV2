@@ -1,0 +1,8 @@
+server:
+  ssl:
+    key-alias: tiptop-https
+    key-store: classpath:tiptop.jks
+    key-store-type: JKS
+    key-password: password@nbbss
+    
+  port: 8080
