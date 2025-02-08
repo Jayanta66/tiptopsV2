@@ -1,19 +1,27 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+<meta charset="ISO-8859-1">
+<title>Job Portal</title>
+    	<link rel="stylesheet" type="text/css" href="" th:href="@{/css/index.css}">
+
+<script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=661f83ed696c5b0019fbab09&product=inline-share-buttons&source=platform" async="async"></script>
+
 </head>
 <body>
-
-<h1>Welcome</h1>
-     	<a href="https://web.tiptops.xyz/login" >login</a>   
-     	
-
-<footer id="con2">
-<div id="vv">
-
-	<form align="center" th:action="@{/}">
+<div align="center">	
+		
+	<h1>Job Manager</h1>
+	
+	<a href="new">Create New Job</a>	
+	    <div class="logout">     	
+    <a class="logout" th:href="@{/logout}">logout</a>
+    </div>
+	
+	
+	<br/><br/>
+		<!--  form action="#" th:action="@{/index2}" th:object="${product}" method="post"-->
+	<form th:action="@{/joblist}">
 		Filter: <input type="text" name="keyword" id="keyword" size="50" th:value="${keyword}" required />
 		&nbsp;
 		<input type="submit" value="Search" />
@@ -22,13 +30,12 @@
 	</form>
 	<br/><br/>
 	
-		<table align="center" border="1" cellpadding="10">
+	<table border="1" cellpadding="10">
 	
-<div align="center" th:if="${totaljob > 1}">
+		<div th:if="${totaljob > 1}">
 		Total Job: [[${totaljob}]]
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</div>
-	
+	</div>
 		<thead>
 			<tr>
 				<th>Application ID</th>
@@ -41,7 +48,7 @@
 				<th>Job Description</th>	
 					
 				
-				<th>Share</th>				
+				<th>Actions</th>				
 			</tr>
 		</thead>
 		<tbody>
@@ -56,7 +63,10 @@
 				<td th:text="${product.jobdescription}">description</td>
 				
 				<td>
-
+					<a th:href="@{'/edit/' + ${product.id}}">Edit</a>
+					&nbsp;&nbsp;&nbsp;&nbsp;
+					<a th:href="@{'/delete/' + ${product.id}}">Delete</a>
+					<br><br>
 <div class="sharethis-inline-share-buttons"></div>
 
 				</td>
@@ -66,18 +76,12 @@
 </div>
 <script type="text/javascript">
 	function clearSearch() {
-		window.location = "[[@{/}]]";
+		window.location = "[[@{/joblist}]]";
 	}
 </script>
 
 
-<br>
-<div id="sf">
 
-
-</div>
-</footer>
-          	
 
 </body>
 </html>
